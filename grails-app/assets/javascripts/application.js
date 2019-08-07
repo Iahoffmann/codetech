@@ -24,11 +24,10 @@ if (typeof jQuery !== 'undefined') {
                 $.ajax({
                     url: "/widgie/autocomplete",
                     dataType: "json",
-                    data: {
-
-                    },
+                    data: {},
                     success: function(data) {
-                        response(data);
+                        var names = data.map(function(x) { return x.name});
+                        response(names);
                     }
                 });
             }});

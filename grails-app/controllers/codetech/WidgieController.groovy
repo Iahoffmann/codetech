@@ -1,5 +1,7 @@
 package codetech
 
+import grails.converters.JSON
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -7,7 +9,7 @@ import grails.transaction.Transactional
 class WidgieController {
     def widgieService
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", autocomplete: "GET"]
 
     def index(Integer max, Integer offset, String query) {
         if (query) {
@@ -57,6 +59,11 @@ class WidgieController {
 
     def edit(Widgie widgie) {
         respond widgie
+    }
+
+    def autocomplete() {
+        def list = widgieService.searchForWidgies('red')
+        render list as JSON
     }
 
     @Transactional

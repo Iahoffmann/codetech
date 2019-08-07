@@ -41,7 +41,7 @@
                     </f:field>
                     <f:field bean="command" property="widgie">
                         <g:field name="widgie" value="${command.widgie}"
-                            type="text" required="true" />
+                            type="text" required="true" id="widgieNameInput"/>
                     </f:field>
                 </fieldset>
                 <fieldset class="buttons">
