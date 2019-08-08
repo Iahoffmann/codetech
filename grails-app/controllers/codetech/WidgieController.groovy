@@ -63,9 +63,11 @@ class WidgieController {
 
     def autocomplete() {
         def query = params["query"]
-        println query
+        def color = params["color"]
+        def supplier = params["supplier"]
 
-        def list = widgieService.searchForWidgies(query)
+        def list = widgieService.searchForWidgies("${query} ${color} ${supplier}")
+
         render list as JSON
     }
 

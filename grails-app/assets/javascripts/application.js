@@ -19,16 +19,21 @@ if (typeof jQuery !== 'undefined') {
             $(this).fadeOut();
         });
 
-        var widgetNameInput = $('#widgieNameInput');
-        widgetNameInput.autocomplete({source: function(request, response) {
+        let colorSelector = '[name = "color"] option:selected';
+        let supplierSelector = '[name = "supplier"] option:selected';
+        let widgetSelector = '[name = "widgie"]';
+
+        $(widgetSelector).autocomplete({source: function(request, response) {
                 $.ajax({
                     url: "/widgie/autocomplete",
                     dataType: "json",
                     data: {
-                        query: $('#widgieNameInput').val()
+                        query: $(widgetSelector).val(),
+                        color: $(colorSelector).text(),
+                        supplier: $(supplierSelector).text()
                     },
                     success: function(data) {
-                        var names = data.map(function(x) { return x.name});
+                        let names = data.map(function(x) { return x.name});
                         response(names);
                     }
                 });
